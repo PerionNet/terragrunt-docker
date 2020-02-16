@@ -12,7 +12,8 @@ RUN pip3 install --no-cache boto3==1.9.240
 RUN pip3 list
 #Install kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.10/bin/linux/amd64/kubectl
-RUN chmod u+x kubectl && mv kubectl /bin/kubectl
+RUN chmod u+x kubectl && mv kubectl /usr/local/bin/kubectl
+RUN kubectl version --client
 
 RUN chmod +x /usr/local/bin/terragrunt
 
