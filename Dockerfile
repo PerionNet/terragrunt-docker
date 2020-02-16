@@ -24,7 +24,6 @@ RUN curl -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/do
     && aws-iam-authenticator version
 
 RUN chmod +x /usr/local/bin/terragrunt
-
 WORKDIR /apps
 
 ENTRYPOINT []
