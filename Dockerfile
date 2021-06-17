@@ -9,7 +9,6 @@ RUN apk add --no-cache \
         build-base \
         python3 \
         curl \
-        ansible \
  &&  /usr/bin/pip3 install --upgrade \
         pip \
         awscli \
