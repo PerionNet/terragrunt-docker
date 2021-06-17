@@ -1,6 +1,3 @@
-ARG TERRAGRUNT_VERSION=0.24.4
-ARG TERRFORM_VERSION="0.12.30"
-
 FROM hashicorp/terraform:$TERRFORM_VERSION as terragrunt_build
 LABEL maintainer="Devops Perion <devops@perion.com>"
 ENV TERRFORM_VERSION=${TERRFORM_VERSION:-0.12.30}
@@ -21,10 +18,8 @@ RUN apk add --no-cache \
         pip \
         awscli \
  && chmod +x /usr/local/bin/terragrunt \
- && rm -rf /var/cache/apk/*
-
-#Install kubectl
-RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
+ && rm -rf /var/cache/apk/* \
+ && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
  && chmod +x /usr/local/bin/kubectl \
  && mkdir -p /root/.kube/ \
  && touch –a /root/.kube/config 
