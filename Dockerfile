@@ -21,7 +21,6 @@ RUN apk add --no-cache \
  &&  /usr/bin/pip3 install --upgrade \
         pip \
         awscli \
-        boto3==1.9.240 \
  && chmod +x /usr/local/bin/terragrunt \
  && rm -rf /var/cache/apk/*
 
@@ -31,8 +30,5 @@ RUN curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_
  && mkdir -p /root/.kube/ \
  && touch –a /root/.kube/config \
  && kubectl version --client
-RUN curl -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_ATHU}/aws-iam-authenticator_${AWS_IAM_ATHU}_linux_amd64 -o /usr/local/bin/aws-iam-authenticator \
- && chmod +x /usr/local/bin/aws-iam-authenticator \
- && aws-iam-authenticator version
 WORKDIR /apps
 ENTRYPOINT ["/bin/bash"]
