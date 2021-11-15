@@ -1,4 +1,4 @@
-FROM alpine/terragrunt:1.0.0
+FROM alpine/terragrunt:1.0.11
 LABEL maintainer="Devops Perion <devops@perion.com>"
 ENV KUBECTL_VERSION="v1.19.10"
 RUN apk add --no-cache \
