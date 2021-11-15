@@ -1,7 +1,7 @@
 FROM hashicorp/terraform:$TERRFORM_VERSION as terragrunt_build
 LABEL maintainer="Devops Perion <devops@perion.com>"
-ENV TERRFORM_VERSION=${TERRFORM_VERSION:-1.0.10}
-ENV TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION:-0.35.5}
+ENV TERRFORM_VERSION=${TERRFORM_VERSION:-0.12.30}
+ENV TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION:-0.24.4}
 ENV KUBECTL_VERSION="v1.19.10"
 ADD https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
