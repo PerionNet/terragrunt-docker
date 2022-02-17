@@ -1,6 +1,6 @@
-FROM alpine/terragrunt:1.1.2
+FROM alpine/terragrunt:1.1.6
 LABEL maintainer="Devops Perion <devops@perion.com>"
-ENV KUBECTL_VERSION="v1.19.10"
+ENV KUBECTL_VERSION="v1.21.9"
 RUN apk add --no-cache \
                 bash \
                 jq \
