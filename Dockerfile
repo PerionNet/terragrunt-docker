@@ -8,6 +8,7 @@ RUN apk add --no-cache \
                 openssh \
                 build-base \
                 curl \
+                unzip \
  
          && chmod +x /usr/local/bin/terragrunt \
          && rm -rf /var/cache/apk/* \
