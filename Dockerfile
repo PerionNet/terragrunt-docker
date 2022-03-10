@@ -14,7 +14,8 @@ RUN apk add --no-cache \
          && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
          && chmod +x /usr/local/bin/kubectl \
          && mkdir -p /root/.kube/ \
-         && touch –a /root/.kube/config 
+         && touch –a /root/.kube/config  \
+         && curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
 
 # Install aw-cli
