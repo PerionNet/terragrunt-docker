@@ -48,9 +48,6 @@ RUN apk --no-cache add \
         /usr/local/aws-cli/v2/current/dist/awscli/examples \
         glibc-*.apk \
     && find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete \
-    && apk --no-cache del \
-        binutils \
-        curl \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /apps
