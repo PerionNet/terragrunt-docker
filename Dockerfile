@@ -1,7 +1,7 @@
-FROM alpine/terragrunt:1.2.1
+FROM alpine/terragrunt:1.3.5
 # tg version 0.37.1, tf version 1.2.1
 LABEL maintainer="Devops Perion <devops@perion.com>"
-ENV KUBECTL_VERSION="v1.21.12"
+ENV KUBECTL_VERSION="v1.23.14"
 RUN apk add --no-cache \
                 bash \
                 jq \
@@ -22,7 +22,7 @@ RUN apk add --no-cache \
 
 # Install aw-cli
 
-ENV GLIBC_VER=2.31-r0
+ENV GLIBC_VER=2.35-r0
 
 # install glibc compatibility for alpine
 RUN apk --no-cache add \
