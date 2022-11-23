@@ -10,7 +10,6 @@ RUN apk add --no-cache \
                 build-base \
                 curl \
                 unzip \
- 
          && chmod +x /usr/local/bin/terragrunt \
          && rm -rf /var/cache/apk/* \
          && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
@@ -23,6 +22,7 @@ RUN apk add --no-cache \
 # Install aw-cli
 
 ENV GLIBC_VER=2.35-r0
+ENV AWSCLI_VERSION=2.9.0
 
 # install glibc compatibility for alpine
 RUN apk --no-cache add \
@@ -32,12 +32,14 @@ RUN apk --no-cache add \
     && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk \
     && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
     && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-i18n-${GLIBC_VER}.apk \
-    && apk add --no-cache \
+    # --force-overwrite to resolve error failing build "glibc-2.35-r0: overwriting etc/nsswitch.conf owned by alpine-baselayout-data-3.2.0-r23"
+    && apk add --no-cache --force-overwrite \
         glibc-${GLIBC_VER}.apk \
         glibc-bin-${GLIBC_VER}.apk \
         glibc-i18n-${GLIBC_VER}.apk \
     && /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8 \
-    && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
+    && ln -sf /usr/glibc-compat/lib/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+    && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip -o awscliv2.zip \
     && unzip awscliv2.zip \
     && aws/install \
     && rm -rf \
@@ -48,6 +50,7 @@ RUN apk --no-cache add \
         /usr/local/aws-cli/v2/current/dist/awscli/examples \
         glibc-*.apk \
     && find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete \
+    && apk --no-cache del binutils \
     && rm -rf /var/cache/apk/*
 
 WORKDIR /apps
