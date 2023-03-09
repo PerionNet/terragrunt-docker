@@ -1,5 +1,5 @@
-FROM alpine/terragrunt:1.3.5
-# tg version 0.37.1, tf version 1.2.1
+FROM alpine/terragrunt:1.4.0
+# tg version 0.44.5, tf version 1.4.0
 LABEL maintainer="Devops Perion <devops@perion.com>"
 ENV KUBECTL_VERSION="v1.23.14"
 RUN apk add --no-cache \
